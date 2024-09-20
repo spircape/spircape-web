@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spircape</title>
+  <link rel="icon" type="image/png" href="https://zh.yuazhi.cn/66a390533ee9c.png">
+  <style>
+    @font-face {
+      font-family: 'CustomFont';
+      /* src: url('https://qin.zh.yuazhi.cn/st/MiSans-Medium.woff2') format('woff2'); */
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'CustomFont', Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #000;
+    }
+
+    .dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+
+    .hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('your-background-image.jpg') no-repeat center center/cover;
+    position: fixed; /* Changed from relative to fixed */
+    top: 50%; /* Centering vertically */
+    left: 50%; /* Centering horizontally */
+    transform: translate(-50%, -50%); /* Adjusting for the center */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+
+    h1 {
+      font-size: 5em;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .scroll-down {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 1.5em;
+      color: #000;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(10px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-down.feedback {
+      animation: feedback 0.4s ease-out;
+    }
+
+    @keyframes feedback {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(0.9);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      background-color: #ffd500;
+      /* 背景颜色和字体颜色 */
+      color: #fff;
+      padding: 10px 0;
+      position: fixed;
+      /* 固定在页面顶部 */
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      /* 确保在其他内容上方 */
+    }
+
+    .marquee-content {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: marquee 90s linear infinite;
+      font-size: 1.2em;
+      font-weight: bold;
+      /* 使字体加粗 */
+      /* 为了确保浏览器兼容性，添加前缀 */
+      -webkit-animation: marquee 90s linear infinite;
+      -moz-animation: marquee 90s linear infinite;
+      -o-animation: marquee 90s linear infinite;
+      -ms-animation: marquee 90s linear infinite;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    footer {
+      background-color: #ffd500;
+      color: #fff;
+      padding: 13px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer a {
+      color: #000000;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: transform 0.3s ease;
+    }
+
+    footer a:hover {
+      transform: translateX(5px);
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #e0e0e0;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      color: #000;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3em;
+      }
+    }
+
+    .highlight {
+      color: #00B0F0;
+    }
+
+    .website {
+      color: #9369c2;
+    }
+
+    .website a {
+      color: #9369c2;
+      text-decoration: none;
+    }
+
+    .website a:hover {
+      color: #2ecc71;
+    }
+
+    .email {
+      color: #2ecc71;
+    }
+
+    .rsn {
+      color: #1d29d0;
+    }
+
+    .qq {
+      color: #e31215;
+    }
+
+    .nihao {
+      color: #2ecc71;
+    }
+
+    .non-clickable {
+      cursor: default;
+    }
+
+    .contact-label {
+      color: #000;
+    }
+
+    a {
+      text-decoration: none;
+      color: #007bff;
+      transition: color 0.6s ease;
+    }
+
+    a:hover {
+      color: #fcfcfc;
+    }
+
+    .slash {
+      color: #000;
+    }
+
+    .namek {
+      color: #ff9700;
+    }
+  </style>
+    <style>
+      /* ... (previous CSS styles) ... */
+  
+      /* Add this footer style */
+      footer {
+      color: #000000;
+      padding: 13px;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      /* Make the background transparent */
+      background-color: transparent;
+      /* New styles for centering the text within the footer */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -150px;
+      }
+    </style>
+  <div class="hero-section">
+    <h1 id="typewriter"></h1>
+  </div>
+
+  <script src="core.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      var isDarkMode = darkModeMediaQuery.matches;
+
+      if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+      }
+
+      var typewriter = new Typewriter('#typewriter', {
+        loop: true,
+        delay: 150,
+      });
+
+      typewriter
+        .typeString('<span class="nihao">你好呀~</span>')
+        .pauseFor(1000)
+        .deleteAll()
+        .typeString('这里是<br><span class="highlight">Spircape 灵境</span>')
+        .pauseFor(1000)
+        .deleteAll()
+        .typeString('<span class="rsn">虚中有实</span>')
+        .pauseFor(1000)
+        .deleteAll()
+        .typeString('<span class="namek">实中有虚</span>')
+        .pauseFor(1000)
+        .deleteAll()
+        .typeString('更多信息见<br> <span class="website"><a href="https://github.com/Spircape" target="_blank">Github</a></span>')
+        .pauseFor(1000)
+        .deleteAll()
+        .typeString('✨请多多关照~')
+        .pauseFor(1000)
+        .deleteAll()
+        .start();
+    });
+
+  </script>
+  <body>
+    <!-- ... (rest of your HTML content) ... -->
+  
+    <!-- Add this footer -->
+    <footer>
+      By Spircape. All rights reserved.
+    </footer>
+  </body>
+  
+</body>
+
+</html>

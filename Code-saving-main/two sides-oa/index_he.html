@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spircape 工作台</title>
+    <link rel="icon" type="image/png" href="https://qin.zh.yuazhi.cn/66a390533ee9c.png">
+    <style>
+        @font-face {
+            font-family: 'Source Han Sans';
+            src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-section {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 40px;
+            background-color: #fff;
+        }
+
+        .text-section h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .text-section p {
+            font-size: 1.2em;
+            color: #777;
+            margin-bottom: 40px;
+        }
+
+        .text-section .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* 按钮之间的间距 */
+        }
+
+        .text-section .button-container a {
+            padding: 12px;
+            font-size: 1em;
+            color: #333;
+            border: 2px solid #333;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .text-section .button-container a:hover {
+            background-color: #ff9700;
+            color: #fff;
+            border-color: #ff9700;
+        }
+
+        .image-section {
+            background-image: url(https://bu.dusays.com/2024/06/28/667e6853e873c.jpg);
+            background-attachment: fixed;
+            background-size: cover;
+            background-color: #464646;
+            display: none; /* 在手机端隐藏图片部分 */
+        }
+
+        @media (min-width: 768px) {
+            .text-section h1 {
+                font-size: 3.5em;
+            }
+
+            .text-section p {
+                font-size: 1.5em;
+            }
+
+            .text-section .button-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .text-section .button-container a {
+                flex: 1 1 calc(50% - 20px);
+                font-size: 1.2em;
+            }
+
+            .image-section {
+                display: block; /* 只在平板及以上设备显示图片部分 */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .text-section {
+                padding: 0 60px;
+            }
+
+            .text-section h1 {
+                font-size: 4em;
+            }
+
+            .text-section p {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-section">
+            <h1><center>创作不断<br>创意无限</center></h1>
+            <p>从这里出发，与我们共同创造更美好的明天</p>
+            <div class="button-container">
+                <a href="https://microsoft365.com/onedrive">Microsoft</a>
+                <a href="https://outlook.cloud.microsoft">Outlook</a>
+                <a href="https://kgthe032.feishu.cn/">飞书</a>
+                <a href="https://www.kdocs.cn/">金山文档</a>
+            </div>
+        </div>
+        <div class="image-section"></div>
+    </div>
+</body>
+</html>

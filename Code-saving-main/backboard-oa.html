@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spircape 工作台</title>
+    <link rel="icon" type="image/png" href="https://qin.zh.yuazhi.cn/66a390533ee9c.png">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #eaffd0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            /*background-image: url('https://bu.dusays.com/2024/06/28/667e6853e873c.jpg'); /* 背景图片的路径 */ 
+        }
+
+        .overlay {
+            /*background-color: rgba(0, 0, 0, 0.5); /* 半透明遮罩 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .link-item {
+            background-color: #ff9700;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-item:hover {
+            background-color: #e68900;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 style="font-size: 3rem;"><center>创作不断 创意无限</center></h1>
+        <div class="links">
+            <a href="https://microsoft365.com/onedrive" class="link-item">Microsoft</a>
+            <a href="https://outlook.cloud.microsoft" class="link-item">Outlook</a>
+            <a href="https://kgthe032.feishu.cn/" class="link-item">飞书</a>
+            <a href="https://www.kdocs.cn/" class="link-item">金山文档</a>
+        </div>
+    </div>
+</body>
+</html>
