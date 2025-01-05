@@ -3,11 +3,13 @@ import { Inter } from 'next/font/google'
 import "./globals.css"
 import Link from 'next/link'
 
+// Note: Place your favicon.ico file in the /app directory for it to be automatically used
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Zheary's Blog",
-  description: "A student and creator passionate about technology and innovation.",
+  title: "Zheary",
+  description: "A student and creator",
 }
 
 export default function RootLayout({
