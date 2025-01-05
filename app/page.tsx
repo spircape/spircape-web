@@ -1,8 +1,5 @@
-'use client'
-
-import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { MapPinIcon, ClockIcon, MailIcon, KeyIcon, Code, Send } from 'lucide-react'
+import { MapPinIcon, ClockIcon, MailIcon, KeyIcon } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -12,7 +9,7 @@ export default function Home() {
           <div>
             <h1 className="text-4xl font-bold mb-2">
               Hello,<br />
-              I&apos;m <span className="text-blue-500">Zheary</span>
+              I'm <span className="text-blue-500">Zheary</span>
             </h1>
             <p className="text-gray-600 text-lg">
               Student / Creator
@@ -40,70 +37,21 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white group">
-            <CardHeader className="pb-0">
-              <motion.div
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                <CardTitle className="text-2xl font-bold flex items-center gap-2">
-                  <Code className="w-6 h-6 text-blue-400" />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">
-                    About me
-                  </span>
-                </CardTitle>
-              </motion.div>
+          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-none">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-purple-600">Our Mission</CardTitle>
             </CardHeader>
-            <CardContent className="pt-4">
-              <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                <p className="text-gray-300">Hi, I am a developer, creator, and designer. In the amateur life, I enjoy watching movies, through the warm and meaningful life.</p>
-              </motion.div>
+            <CardContent>
+              <p className="text-gray-700">Creating cutting-edge software that empowers users and pushes technological boundaries.</p>
             </CardContent>
-            <motion.div 
-              className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-300"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 0 }}
-              whileHover={{ scaleX: 1 }}
-              transition={{ duration: 0.3 }}
-            />
           </Card>
-
-          <Card className="overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white group">
-            <CardHeader className="pb-0">
-              <motion.div
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                <CardTitle className="text-2xl font-bold flex items-center gap-2">
-                  <Send className="w-6 h-6 text-purple-400" />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
-                    Contact
-                  </span>
-                </CardTitle>
-              </motion.div>
+          <Card className="bg-gradient-to-br from-pink-50 to-pink-100 border-none">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-pink-600">Our Expertise</CardTitle>
             </CardHeader>
-            <CardContent className="pt-4">
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                <p className="text-gray-300">If you have any questions or need to get in touch with me, you can use the email address provided above.</p>
-              </motion.div>
+            <CardContent>
+              <p className="text-gray-700">Specializing in web development, mobile apps, and cloud solutions with the latest technologies.</p>
             </CardContent>
-            <motion.div 
-              className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-pink-300"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 0 }}
-              whileHover={{ scaleX: 1 }}
-              transition={{ duration: 0.3 }}
-            />
           </Card>
         </div>
       </div>
