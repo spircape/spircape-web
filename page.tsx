@@ -13,7 +13,7 @@ export default function Page() {
               <h1 className="text-4xl font-bold">
                 ✨Hello
                 <br />
-                This is<span className="text-blue-500">Spircape</span>
+                This is <span className="text-blue-500">Spircape</span>
               </h1>
               <p className="text-gray-600">虚中有实 实中有虚</p>
             </div>
