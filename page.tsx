@@ -11,18 +11,18 @@ export default function Page() {
             {/* Header Section */}
             <div className="space-y-2 mb-4 md:mb-0">
               <h1 className="text-4xl font-bold">
-                Hello,
+                ✨你好
                 <br />
-                I'm <span className="text-blue-500">Zheary</span>
+                <span className="text-blue-500">Spircape</span>灵境
               </h1>
-              <p className="text-gray-600">Student / Creator</p>
+              <p className="text-gray-600">虚中有实 实中有虚</p>
             </div>
 
             {/* Contact Info */}
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-gray-600">
                 <MapPin className="w-4 h-4" />
-                <span>Beijing, China</span>
+                <span>From China</span>
               </div>
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="w-4 h-4" />
@@ -30,7 +30,7 @@ export default function Page() {
               </div>
               <div className="flex items-center gap-2 text-gray-600">
                 <Mail className="w-4 h-4" />
-                <span>zh@zheary.com</span>
+                <span>10010@spircape.com</span>
               </div>
             </div>
           </div>
@@ -42,10 +42,10 @@ export default function Page() {
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <User className="w-5 h-5 text-purple-500" />
-                  <h2 className="text-xl font-semibold text-purple-500">About me</h2>
+                  <h2 className="text-xl font-semibold text-purple-500">关于项目</h2>
                 </div>
                 <p className="text-gray-700">
-                  Hi, I am a developer, creator, and designer. In the amateur life, I enjoy watching movies, through the warm and meaningful life.
+                  一个个人知识库项目，知识库不仅记录个人的学习笔记、技术文档、生活感悟等内容，还试图优化生活方式，提升效率。
                 </p>
               </CardContent>
             </Card>
@@ -55,10 +55,10 @@ export default function Page() {
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <MessageCircle className="w-5 h-5 text-pink-500" />
-                  <h2 className="text-xl font-semibold text-pink-500">Contact</h2>
+                  <h2 className="text-xl font-semibold text-pink-500">练习</h2>
                 </div>
                 <p className="text-gray-700">
-                  If you have any questions or need to get in touch with me, you can click on the <span className="font-medium">[Mail]</span> above to send an email.
+                  如果你有任何问题，您可以通过上方公示的 <span className="font-medium">[邮箱]</span> 联系项目负责人。
                 </p>
               </CardContent>
             </Card>
