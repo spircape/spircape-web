@@ -11,9 +11,9 @@ export default function Page() {
             {/* Header Section */}
             <div className="space-y-2 mb-4 md:mb-0">
               <h1 className="text-4xl font-bold">
-                ✨你好
+                ✨Hello
                 <br />
-                <span className="text-blue-500">Spircape</span>灵境
+                This is<span className="text-blue-500">Spircape</span>
               </h1>
               <p className="text-gray-600">虚中有实 实中有虚</p>
             </div>
