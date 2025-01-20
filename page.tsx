@@ -55,7 +55,7 @@ export default function Page() {
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <MessageCircle className="w-5 h-5 text-pink-500" />
-                  <h2 className="text-xl font-semibold text-pink-500">练习</h2>
+                  <h2 className="text-xl font-semibold text-pink-500">联系</h2>
                 </div>
                 <p className="text-gray-700">
                   如果你有任何问题，您可以通过上方公示的 <span className="font-medium">[邮箱]</span> 联系项目负责人。
