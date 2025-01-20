@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Clock, Mail, User, MessageCircle } from 'lucide-react'
+import { MapPin, Clock, Mail, User, MessageCircle, Github } from 'lucide-react'
 
 export default function Page() {
   return (
@@ -21,8 +21,8 @@ export default function Page() {
             {/* Contact Info */}
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-gray-600">
-                <MapPin className="w-4 h-4" />
-                <span>From China</span>
+                <Github className="w-4 h-4" />
+                <span>@spircape-org</span>
               </div>
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="w-4 h-4" />
