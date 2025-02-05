@@ -42,89 +42,72 @@ export default function Post({ params }: { params: { slug: string } }) {
   const readingTime = Math.ceil(props.content.split(" ").length / 200) // Assuming 200 words per minute
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <article className="bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="px-6 py-10 sm:px-10">
-            <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 text-gray-900 leading-tight">
-              {props.frontMatter.title}
-            </h1>
-            <div className="flex flex-wrap items-center text-gray-600 mb-8 gap-4">
-              <div className="flex items-center bg-blue-100 rounded-full px-4 py-2">
-                <CalendarIcon className="mr-2 text-blue-600" size={18} />
-                <time className="text-sm font-medium">{props.frontMatter.date}</time>
-              </div>
-              <div className="flex items-center bg-green-100 rounded-full px-4 py-2">
-                <ClockIcon className="mr-2 text-green-600" size={18} />
-                <span className="text-sm font-medium">{readingTime} min read</span>
-              </div>
-              {props.frontMatter.author && (
-                <div className="flex items-center bg-yellow-100 rounded-full px-4 py-2">
-                  <UserIcon className="mr-2 text-yellow-600" size={18} />
-                  <span className="text-sm font-medium">{props.frontMatter.author}</span>
-                </div>
-              )}
-              {props.frontMatter.tags && (
-                <div className="flex items-center bg-purple-100 rounded-full px-4 py-2">
-                  <TagIcon className="mr-2 text-purple-600" size={18} />
-                  <span className="text-sm font-medium">{props.frontMatter.tags.join(", ")}</span>
-                </div>
-              )}
+    <div className="max-w-3xl mx-auto px-4 py-12">
+      <article>
+        <header className="mb-8">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 leading-tight">{props.frontMatter.title}</h1>
+          <div className="flex flex-wrap items-center text-sm text-gray-600 gap-4">
+            <div className="flex items-center">
+              <CalendarIcon className="mr-2 text-gray-400" size={16} />
+              <time>{props.frontMatter.date}</time>
             </div>
-            <div className="prose prose-lg max-w-none">
-              <MDXRemote
-                source={props.content}
-                components={{
-                  h1: (props) => (
-                    <h1
-                      {...props}
-                      className="text-3xl font-bold mt-12 mb-6 text-gray-900 border-b-2 border-blue-200 pb-2"
-                    />
-                  ),
-                  h2: (props) => (
-                    <h2 {...props} className="text-2xl font-semibold mt-10 mb-4 text-gray-800 flex items-center">
-                      <BookOpenIcon className="mr-2 text-blue-600" size={24} />
-                      {props.children}
-                    </h2>
-                  ),
-                  h3: (props) => <h3 {...props} className="text-xl font-semibold mt-8 mb-3 text-gray-700" />,
-                  p: (props) => <p {...props} className="mb-6 text-gray-700 leading-relaxed" />,
-                  ul: (props) => <ul {...props} className="list-disc pl-5 mb-6 text-gray-700 space-y-2" />,
-                  ol: (props) => <ol {...props} className="list-decimal pl-5 mb-6 text-gray-700 space-y-2" />,
-                  li: (props) => <li {...props} className="mb-2" />,
-                  a: (props) => <a {...props} className="text-blue-600 hover:underline transition duration-200" />,
-                  blockquote: (props) => (
-                    <blockquote
-                      {...props}
-                      className="border-l-4 border-blue-400 pl-4 italic my-6 text-gray-600 bg-blue-50 py-4 rounded-r"
-                    />
-                  ),
-                  code: (props) => (
-                    <code {...props} className="bg-gray-100 rounded px-1.5 py-0.5 text-sm text-gray-800 font-mono" />
-                  ),
-                  pre: (props) => (
-                    <pre
-                      {...props}
-                      className="bg-gray-100 rounded-lg p-4 my-6 overflow-x-auto border border-gray-200 text-sm"
-                    />
-                  ),
-                }}
-              />
+            <div className="flex items-center">
+              <ClockIcon className="mr-2 text-gray-400" size={16} />
+              <span>{readingTime} min read</span>
             </div>
+            {props.frontMatter.author && (
+              <div className="flex items-center">
+                <UserIcon className="mr-2 text-gray-400" size={16} />
+                <span>{props.frontMatter.author}</span>
+              </div>
+            )}
+            {props.frontMatter.tags && (
+              <div className="flex items-center">
+                <TagIcon className="mr-2 text-gray-400" size={16} />
+                <span>{props.frontMatter.tags.join(", ")}</span>
+              </div>
+            )}
           </div>
-        </article>
-        <div className="mt-12 text-center">
-          <Button
-            asChild
-            variant="outline"
-            className="inline-flex items-center hover:bg-blue-50 transition duration-200 rounded-full px-8 py-3 text-blue-600 border-blue-300"
-          >
-            <Link href="/">
-              <ArrowLeftIcon className="mr-2 h-5 w-5" />
-              Back to Home
-            </Link>
-          </Button>
+        </header>
+        <div className="prose prose-lg max-w-none">
+          <MDXRemote
+            source={props.content}
+            components={{
+              h1: (props) => <h1 {...props} className="text-3xl font-bold mt-12 mb-4 text-gray-900" />,
+              h2: (props) => (
+                <h2 {...props} className="text-2xl font-semibold mt-8 mb-4 text-gray-800 flex items-center">
+                  <BookOpenIcon className="mr-2 text-gray-600" size={20} />
+                  {props.children}
+                </h2>
+              ),
+              h3: (props) => <h3 {...props} className="text-xl font-semibold mt-6 mb-3 text-gray-700" />,
+              p: (props) => <p {...props} className="mb-4 text-gray-700 leading-relaxed" />,
+              ul: (props) => <ul {...props} className="list-disc pl-5 mb-4 text-gray-700 space-y-2" />,
+              ol: (props) => <ol {...props} className="list-decimal pl-5 mb-4 text-gray-700 space-y-2" />,
+              li: (props) => <li {...props} className="mb-1" />,
+              a: (props) => <a {...props} className="text-blue-600 hover:underline transition duration-200" />,
+              blockquote: (props) => (
+                <blockquote {...props} className="border-l-4 border-gray-300 pl-4 italic my-4 text-gray-600" />
+              ),
+              code: (props) => (
+                <code {...props} className="bg-gray-100 rounded px-1 py-0.5 text-sm text-gray-800 font-mono" />
+              ),
+              pre: (props) => <pre {...props} className="bg-gray-100 rounded p-4 my-4 overflow-x-auto text-sm" />,
+            }}
+          />
         </div>
+      </article>
+      <div className="mt-12">
+        <Button
+          asChild
+          variant="outline"
+          className="inline-flex items-center hover:bg-gray-100 transition duration-200"
+        >
+          <Link href="/">
+            <ArrowLeftIcon className="mr-2 h-5 w-5" />
+            Back to Home
+          </Link>
+        </Button>
       </div>
     </div>
   )
