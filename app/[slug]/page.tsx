@@ -1,91 +1,120 @@
+import { notFound } from "next/navigation"
+import { MDXRemote } from "next-mdx-remote/rsc"
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
-import { remark } from "remark"
-import html from "remark-html"
 import Link from "next/link"
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
-import { ShareButton } from "@/components/share-button"
+import { Button } from "@/components/ui/button"
+import { CalendarIcon, ArrowLeftIcon, BookOpenIcon, TagIcon, ClockIcon, UserIcon } from "lucide-react"
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("articles"))
+  const files = fs.readdirSync(path.join("passage"))
 
-  return files.map((filename) => ({
-    slug: filename.replace(".md", ""),
-  }))
+  return files
+    .filter((filename) => filename.endsWith(".mdx"))
+    .map((filename) => ({
+      slug: filename.replace(".mdx", ""),
+    }))
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  const { slug } = params
-  const markdownWithMeta = fs.readFileSync(path.join("articles", slug + ".md"), "utf-8")
+function getPost({ slug }: { slug: string }) {
+  try {
+    const markdownFile = fs.readFileSync(path.join("passage", `${slug}.mdx`), "utf-8")
+    const { data: frontMatter, content } = matter(markdownFile)
+    return {
+      frontMatter,
+      slug,
+      content,
+    }
+  } catch (error) {
+    console.error(`Error reading file for slug: ${slug}`, error)
+    return null
+  }
+}
 
-  const { data: frontMatter, content } = matter(markdownWithMeta)
-  const processedContent = await remark().use(html).process(content)
-  const contentHtml = processedContent.toString()
+export default function Post({ params }: { params: { slug: string } }) {
+  const props = getPost(params)
 
-  // Estimate read time
-  const wordsPerMinute = 200
-  const wordCount = content.split(/\s+/g).length
-  const readTime = Math.ceil(wordCount / wordsPerMinute)
+  if (!props || !params.slug) {
+    return notFound()
+  }
+
+  const readingTime = Math.ceil(props.content.split(" ").length / 200) // Assuming 200 words per minute
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="max-w-[800px] w-full px-6 py-12">
-        <Link href="/" className="inline-flex items-center text-green-600 hover:text-green-700 font-semibold mb-12">
-          <ArrowLeft className="mr-2 h-5 w-5" />
-          Back to Home
-        </Link>
-
-        <article className="w-full">
-          {/* Article Header */}
-          <div className="mb-12">
-            <h1 className="text-5xl font-bold mb-6 text-gray-900">{frontMatter.title}</h1>
-            {frontMatter.description && <p className="text-xl text-gray-600 mb-6">{frontMatter.description}</p>}
-
-            {/* Meta Information */}
-            <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 mb-6">
+    <div className="min-h-screen bg-gray-50 pt-16 pb-24">
+      <div className="max-w-3xl mx-auto px-4">
+        <article className="bg-white shadow-sm rounded-lg p-8">
+          <header className="mb-10 text-center">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-gray-900 leading-tight">
+              {props.frontMatter.title}
+            </h1>
+            <div className="flex flex-wrap justify-center items-center text-sm text-gray-600 gap-6">
               <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
-                <time>{frontMatter.date}</time>
+                <CalendarIcon className="mr-2 text-blue-500" size={18} />
+                <time>{props.frontMatter.date}</time>
               </div>
               <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
-                <span>{readTime} min read</span>
+                <ClockIcon className="mr-2 text-green-500" size={18} />
+                <span>{readingTime} min read</span>
               </div>
+              {props.frontMatter.author && (
+                <div className="flex items-center">
+                  <UserIcon className="mr-2 text-purple-500" size={18} />
+                  <span>{props.frontMatter.author}</span>
+                </div>
+              )}
+              {props.frontMatter.tags && (
+                <div className="flex items-center">
+                  <TagIcon className="mr-2 text-red-500" size={18} />
+                  <span>{props.frontMatter.tags.join(", ")}</span>
+                </div>
+              )}
             </div>
-
-            {/* Tags */}
-            {frontMatter.tags && (
-              <div className="flex flex-wrap gap-2 mb-6">
-                {frontMatter.tags.map((tag: string) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-50 text-green-700"
-                  >
-                    <Tag className="h-3 w-3 mr-1" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            <div className="w-24 h-1 bg-green-600" />
-          </div>
-
-          {/* Article Content */}
-          <div
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-            className="prose prose-lg w-full prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-green-600 prose-a:no-underline hover:prose-a:text-green-700 mb-12"
-          />
-
-          {/* Article Footer */}
-          <div className="border-t border-gray-200 pt-6">
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-gray-500">Last updated: {frontMatter.date}</div>
-              <ShareButton />
-            </div>
+          </header>
+          <div className="prose prose-lg max-w-none">
+            <MDXRemote
+              source={props.content}
+              components={{
+                h1: (props) => <h1 {...props} className="text-3xl font-bold mt-12 mb-4 text-gray-900 border-b pb-2" />,
+                h2: (props) => (
+                  <h2 {...props} className="text-2xl font-semibold mt-10 mb-4 text-gray-800 flex items-center">
+                    <BookOpenIcon className="mr-2 text-blue-600" size={24} />
+                    {props.children}
+                  </h2>
+                ),
+                h3: (props) => <h3 {...props} className="text-xl font-semibold mt-8 mb-3 text-gray-700" />,
+                p: (props) => <p {...props} className="mb-6 text-gray-700 leading-relaxed" />,
+                ul: (props) => <ul {...props} className="list-disc pl-5 mb-6 text-gray-700 space-y-2" />,
+                ol: (props) => <ol {...props} className="list-decimal pl-5 mb-6 text-gray-700 space-y-2" />,
+                li: (props) => <li {...props} className="mb-2" />,
+                a: (props) => <a {...props} className="text-blue-600 hover:underline transition duration-200" />,
+                blockquote: (props) => (
+                  <blockquote
+                    {...props}
+                    className="border-l-4 border-blue-300 pl-4 italic my-6 text-gray-600 bg-blue-50 py-2 rounded-r"
+                  />
+                ),
+                code: (props) => (
+                  <code {...props} className="bg-gray-100 rounded px-1.5 py-0.5 text-sm text-gray-800 font-mono" />
+                ),
+                pre: (props) => <pre {...props} className="bg-gray-100 rounded-lg p-4 my-6 overflow-x-auto text-sm" />,
+              }}
+            />
           </div>
         </article>
+        <div className="mt-12 text-center">
+          <Button
+            asChild
+            variant="outline"
+            className="inline-flex items-center hover:bg-white transition duration-200 rounded-full px-6 py-3 text-blue-600 border-blue-300"
+          >
+            <Link href="/">
+              <ArrowLeftIcon className="mr-2 h-5 w-5" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
   )
