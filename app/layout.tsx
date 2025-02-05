@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Spircape',
-  description: '虚中有实 实中有虚',
+  description: '铏氫腑鏈夊疄 瀹炰腑鏈夎櫄',
 }
 
 export default function RootLayout({

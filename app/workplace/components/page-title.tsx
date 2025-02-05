@@ -11,9 +11,9 @@ export function PageTitle() {
         transition={{ duration: 0.5 }}
         className="text-4xl font-bold text-gray-900 mx-auto"
       >
-        Éè¼ÆÆôÖÇÔÏ
+        è®¾è®¡å¯æ™ºéŸµ
         <br />
-        ¼¼ÊõÖþÖª¿â
+        æŠ€æœ¯ç­‘çŸ¥åº“
       </motion.h1>
       <motion.div
         initial={{ scaleX: 0 }}
