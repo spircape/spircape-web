@@ -22,7 +22,7 @@ export default function Page() {
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-gray-600">
                 <Github className="w-4 h-4" />
-                <span>@spircape-org</span>
+                <span>@spircape</span>
               </div>
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="w-4 h-4" />
